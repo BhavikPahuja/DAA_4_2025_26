@@ -1,17 +1,12 @@
 class Solution {
     boolean dfs(int u, boolean[] seen, int cnt, int n, Map<Integer, Set<Integer>> adj) {
-        if (cnt == n)
-            return true;
+        if (cnt == n) return true;
         seen[u] = true;
         Set<Integer> neighbors = adj.getOrDefault(u, Collections.emptySet());
-        for (int v : neighbors)
-            if (!seen[v])
-                if (dfs(v, seen, cnt + 1, n, adj))
-                    return true;
+        for (int v : neighbors) if (!seen[v]) if (dfs(v, seen, cnt + 1, n, adj)) return true;
         seen[u] = false;
         return false;
     }
-
     boolean check(int n, int m, ArrayList<ArrayList<Integer>> edges) {
         Map<Integer, Set<Integer>> adj = new HashMap<>();
         for (ArrayList<Integer> edge : edges) {
